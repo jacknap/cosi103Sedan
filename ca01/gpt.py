@@ -12,10 +12,8 @@ class GPT():
     ''' make queries to gpt from a given API '''
     def __init__(self,apikey):
         ''' store the apikey in an instance variable '''
-        self.apikey=apikey
         # Set up the OpenAI API client
-#        openai.api_key = "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" #os.environ.get('APIKEY')
-        openai.api_key = "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"
+        openai.api_key = apikey
 
         # Set up the model and prompt
         self.model_engine = "text-davinci-003"
@@ -49,7 +47,7 @@ class GPT():
         return response
 
     def ken_response(self, prompt):
-        '''Generate GPT response on egg prices'''
+        '''Use GPT to convert code from Python to Java'''
         completion = openai.Completion.create(
             engine=self.model_engine,
             prompt=f"Please convert the following code from Python into Java: {prompt}",
@@ -72,4 +70,4 @@ if __name__=='__main__':
     '''
     import os
     g = GPT(os.environ.get("APIKEY"))
-    print(g.gettest("thing"))
+#    print(g.gettest("thing"))

@@ -12,11 +12,6 @@ import os
 app = Flask(__name__,  static_url_path='/static')
 gptAPI = GPT(os.environ.get('APIKEY'))
 
-# Set the secret key to some random bytes. Keep this really secret!
-# app.secret_key = "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"
-app.secret_key = "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"
-
-
 @app.route('/')
 def index():
     ''' display a link to the general query page '''
