@@ -75,6 +75,14 @@ class GPT():
         response = completion.choices[0].text
         return response
 
+    '''test with the following prompt: 
+    def factorial(n):
+        if n == 0:
+            return 1
+        else:
+            return n * factorial(n-1)
+    '''
+
     def jack_response(self, prompt):
         '''Use GPT to do a runtime analysis of a python function'''
         completion = openai.Completion.create(
