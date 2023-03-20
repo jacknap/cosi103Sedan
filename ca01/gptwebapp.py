@@ -21,19 +21,11 @@ def index():
     <h1>Mid-Sized Sedan</h1>
     <ul>
       <li><a href="/gpt">Try Chat-GPT</a></li>
-
       <li><a href="/about">About Page</a></li>
       <li><a href="/team">Team Members</a></li>
-      
       <li><a href="/index">Index</a></li>
-
-      
-      
       <img src="/static/altima.jpg" alt = "This should be a Honda Accord" style="width:888px;height:500px"/>
-       
-
     </ul>
-
     '''
 
 
@@ -44,13 +36,8 @@ def gpt():
     <h1>GPT Prompts</h1>
     
     <li><a href="/gpt/kevin">Travel destinations</a></li>
-    
     <li><a href="/gpt/ken">Convert code from Python to Java with GPT</a></li>
-    
     <li><a href="/gpt/jack">Runtime analysis of a python function with GPT</a></li>
-
-
-
 
     '''
 
@@ -61,8 +48,7 @@ def about():
     <h1>GPT Demo About</h1>
     
     This program is a creative assignment by Kevin Chen, Ken Kirio, and Jack Napoleone , created in COSI 103, Spring 2023 <br>
-    This is a web server app that takes in queries from the user, sends them to OpenAI's GPT, then return 
-    that response.
+    This is a web server app that takes in queries from the user, sends them to OpenAI's GPT, then returns its response.
     '''
 
 
@@ -74,10 +60,8 @@ def team():
     <ul>
       <li>Kevin created gpt.py and gptwebapp.py, made the index and about webpages, and wrote his gpt demo</li> 
       <li>Ken made the team webpage, altered the structure so each team member could write their own GPT query, and wrote his gpt demo</li> 
-      <li>Jack [list your contributions here]</li> 
+      <li>Jack wrote his gpt demo</li> 
     </ul>
-    
-    
     '''
 
 
@@ -88,10 +72,7 @@ def teamkevin():
     <h1>Kevin Chen</h1>
     
     I worked on this project <br>
-    
-     <img src="/static/clown.jpg" />
-
-    
+     <img src="/static/clown.jpg" alt = "This should be a clown licence">
     '''
 
 
@@ -104,7 +85,6 @@ def teamken():
     I worked on this project. <br />
     Here's my GPT app: 
     <a href="/gpt/ken">Convert code from Python to Java with GPT</a></li>
-    
     '''
 
 
@@ -113,9 +93,8 @@ def teamjack():
     return '''
 
     <h1>Jack Napoleone</h1>
-
-    <a href="/gpt/jack">Ask ChatGPT the runtime of a python function in O(n)</a>
-    
+    Here's my GPT app:
+    <a href="/gpt/jack">Get the runtime of a python function</a>
     '''
 
 
@@ -128,10 +107,7 @@ def index2():
       <li><a href="/team/kevin">Kevin Chen</a></li>
       <li><a href="/team/ken">Ken Kirio</a></li>
       <li><a href="/team/jack">Jack Napoleone</a></li>       
-
     </ul>
-    
-    
     '''
 
 
@@ -139,7 +115,6 @@ def index2():
 def kevin_gptdemo():
     ''' handle a get request by sending a form 
         and a post request by returning the GPT response
-
     '''
     if request.method == 'POST':
         prompt = request.form['prompt']
