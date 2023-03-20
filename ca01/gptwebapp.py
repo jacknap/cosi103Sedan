@@ -47,7 +47,7 @@ def gpt():
     
     <li><a href="/gpt/ken">Convert code from Python to Java with GPT</a></li>
     
-    <li><a href="/gpt/jack">name for jacks prompt</a></li>
+    <li><a href="/gpt/jack">Runtime analysis of a python function with GPT</a></li>
 
 
 
@@ -114,7 +114,7 @@ def teamjack():
 
     <h1>Jack Napoleone</h1>
 
-    <a href="/jack/gptdemo">Ask ChatGPT the runtime of a python function in O(n)</a>
+    <a href="/gpt/jack">Ask ChatGPT the runtime of a python function in O(n)</a>
     
     '''
 
@@ -198,7 +198,7 @@ def ken_gptdemo():
         '''
 
 
-@app.route('/jack/gptdemo', methods=['GET', 'POST'])
+@app.route('/gpt/jack', methods=['GET', 'POST'])
 def jack_gptdemo():
     ''' handle a get request by sending a form 
     and a post request by returning the GPT response
