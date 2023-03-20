@@ -75,11 +75,11 @@ class GPT():
         response = completion.choices[0].text
         return response
 
-    def jack_prompt(self, prompt):
-        '''Use GPT to do a runing time analysis of a python function'''
+    def jack_response(self, prompt):
+        '''Use GPT to do a runtime analysis of a python function'''
         completion = openai.Completion.create(
             engine=self.model_engine,
-            prompt=f"What is the running time of the following python function: {prompt}",
+            prompt=f"What is the running time of the following python function in terms of O(n): {prompt}",
             max_tokens=1024,
             n=1,
             stop=None,
@@ -95,4 +95,4 @@ if __name__ == '__main__':
     '''
     import os
     g = GPT(os.environ.get("APIKEY"))
-#    print(g.gettest("thing"))
+    print(g.gettest("thing"))

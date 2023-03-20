@@ -205,7 +205,7 @@ def jack_gptdemo():
     '''
     if request.method == 'POST':
         prompt = request.form['prompt']
-        answer = gptAPI.jack_prompt(prompt)
+        answer = gptAPI.jack_response(prompt)
         return f'''
         <h1>GPT Demo</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
