@@ -5,12 +5,13 @@ Created on Tue Mar  7 17:58:42 2023
 @author: kevinchen
 """
 
-from flask import request,redirect,url_for,Flask
+from flask import request, redirect, url_for, Flask
 from gpt import GPT
 import os
 
 app = Flask(__name__,  static_url_path='/static')
 gptAPI = GPT(os.environ.get('APIKEY'))
+
 
 @app.route('/')
 def index():
@@ -39,11 +40,12 @@ def about():
     return '''
     <h1>GPT Demo About</h1>
     
-    This program is a creative assignment by Kevin Chen, Ken Kirio, and ______ , created in COSI 103, Spring 2023 <br>
+    This program is a creative assignment by Kevin Chen, Ken Kirio, and Jack Napoleone , created in COSI 103, Spring 2023 <br>
     This is a web server app that takes in queries from the user, sends them to OpenAI's GPT, then return 
     that response.
     '''
-    
+
+
 @app.route('/team', methods=['GET', 'POST'])
 def team():
     return '''
@@ -57,7 +59,8 @@ def team():
     
     
     '''
-    
+
+
 @app.route('/team/kevin', methods=['GET', 'POST'])
 def teamkevin():
     return '''
@@ -74,6 +77,7 @@ def teamkevin():
     
     '''
 
+
 @app.route('/team/ken', methods=['GET', 'POST'])
 def teamken():
     return '''
@@ -86,6 +90,18 @@ def teamken():
     
     '''
 
+
+@app.route('/team/jack', methods=['GET', 'POST'])
+def teamjack():
+    return '''
+
+    <h1>Jack Napoleone</h1>
+
+    <a href="/jack/gptdemo">Ask ChatGPT the runtime of a python function in O(n)</a>
+    
+    '''
+
+
 @app.route('/index', methods=['GET', 'POST'])
 def index2():
     return '''
@@ -94,18 +110,19 @@ def index2():
     <ul>
       <li><a href="/team/kevin">Kevin Chen</a></li>
       <li><a href="/team/ken">Ken Kirio</a></li>
-      <li><a href="/team/member_3">Member 3</a></li>       
+      <li><a href="/team/jack">Jack Napoleone</a></li>       
 
     </ul>
     
     
     '''
 
+
 @app.route('/kevin/gptdemo', methods=['GET', 'POST'])
 def kevin_gptdemo():
     ''' handle a get request by sending a form 
         and a post request by returning the GPT response
-    
+
     '''
     if request.method == 'POST':
         prompt = request.form['prompt']
@@ -130,11 +147,12 @@ def kevin_gptdemo():
         </form>
         '''
 
+
 @app.route('/ken/gptdemo', methods=['GET', 'POST'])
 def ken_gptdemo():
     ''' handle a get request by sending a form 
         and a post request by returning the GPT response
-    
+
     '''
     if request.method == 'POST':
         prompt = request.form['prompt']
@@ -160,6 +178,35 @@ def ken_gptdemo():
         '''
 
 
-if __name__=='__main__':
+@app.route('/jack/gptdemo', methods=['GET', 'POST'])
+def jack_gptdemo():
+    ''' handle a get request by sending a form 
+    and a post request by returning the GPT response
+    '''
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.jack_prompt(prompt)
+        return f'''
+        <h1>GPT Demo</h1>
+        <pre style="bgcolor:yellow">{prompt}</pre>
+        <hr>
+        Here is the answer in text mode:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('jack_gptdemo')}> make another query</a>
+        '''
+    else:
+        return '''
+        <h1>Python Runtime Analysis with GPT</h1>
+        Enter your query below
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
+
+
+if __name__ == '__main__':
     # run the code on port 5001, MacOS uses port 5000 for its own service :(
-    app.run(debug=True,port=5001)
+    app.run(debug=True, port=5001)

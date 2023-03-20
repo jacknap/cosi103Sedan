@@ -10,7 +10,8 @@ import openai
 
 class GPT():
     ''' make queries to gpt from a given API '''
-    def __init__(self,apikey):
+
+    def __init__(self, apikey):
         ''' store the apikey in an instance variable '''
         # Set up the OpenAI API client
         openai.api_key = apikey
@@ -18,7 +19,7 @@ class GPT():
         # Set up the model and prompt
         self.model_engine = "text-davinci-003"
 
-    def getResponse(self,prompt):
+    def getResponse(self, prompt):
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
@@ -31,8 +32,8 @@ class GPT():
 
         response = completion.choices[0].text
         return response
-    
-    def gettest(self,prompt):
+
+    def gettest(self, prompt):
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
@@ -59,13 +60,23 @@ class GPT():
 
         response = completion.choices[0].text
         return response
-    
-    
+
+    def jack_prompt(self, prompt):
+        '''Use GPT to do a runing time analysis of a python function'''
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt=f"What is the running time of the following python function: {prompt}",
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.8,
+        )
+
+        response = completion.choices[0].text
+        return response
 
 
-
-
-if __name__=='__main__':
+if __name__ == '__main__':
     '''
     '''
     import os
