@@ -60,7 +60,7 @@ def team():
     <ul>
       <li>Kevin created gpt.py and gptwebapp.py, made the index and about webpages, and wrote his gpt demo</li> 
       <li>Ken made the team webpage, altered the structure so each team member could write their own GPT query, and wrote his gpt demo</li> 
-      <li>Jack wrote his gpt demo</li> 
+      <li>Jack fixed the images and wrote his gpt demo</li> 
     </ul>
     '''
 
@@ -182,7 +182,7 @@ def jack_gptdemo():
         prompt = request.form['prompt']
         answer = gptAPI.jack_response(prompt)
         return f'''
-        <h1>GPT Demo</h1>
+        <h1>Python Runtime Analysis with GPT</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
         <hr>
         Here is the answer in text mode:
@@ -194,7 +194,7 @@ def jack_gptdemo():
     else:
         return '''
         <h1>Python Runtime Analysis with GPT</h1>
-        Enter your query below
+        Enter your python function below
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
