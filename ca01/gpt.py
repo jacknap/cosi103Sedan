@@ -102,5 +102,6 @@ if __name__ == '__main__':
     '''
     '''
     import os
+    # set APIKEY on Windows with $Env:APIKEY = <Your Key>
     g = GPT(os.environ.get("APIKEY"))
     print(g.gettest("thing"))
