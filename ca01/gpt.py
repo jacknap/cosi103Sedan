@@ -45,7 +45,21 @@ class GPT():
 
         response = completion.choices[0].text
         return response
+    
+    def kevin_response(self, prompt):
+        '''Use GPT to generate travel destinations in a country / place'''
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt=f"Travel destinations in {prompt}",
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.8,
+        )
 
+        response = completion.choices[0].text
+        return response
+   
     def ken_response(self, prompt):
         '''Use GPT to convert code from Python to Java'''
         completion = openai.Completion.create(
@@ -59,8 +73,6 @@ class GPT():
 
         response = completion.choices[0].text
         return response
-    
-    
 
 
 
@@ -70,4 +82,4 @@ if __name__=='__main__':
     '''
     import os
     g = GPT(os.environ.get("APIKEY"))
-#    print(g.gettest("thing"))
+    print(g.gettest("thing"))
