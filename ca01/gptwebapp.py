@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Mar  7 17:58:42 2023
+Created on Sun Mar 12 14:43:56 2023
 
 @author: kevinchen
 """
@@ -19,6 +19,8 @@ def index():
     return '''
     <h1>Mid-Sized Sedan</h1>
     <ul>
+      <li><a href="/gpt">Try Chat-GPT</a></li>
+
       <li><a href="/about">About Page</a></li>
       <li><a href="/team">Team Members</a></li>
       
@@ -32,7 +34,22 @@ def index():
     </ul>
 
     '''
+@app.route('/gpt', methods= ['GET', 'POST'])
+def gpt():
+    return '''
 
+    <h1>GPT Prompts</h1>
+    
+    <li><a href="/gpt/kevin">Travel destinations</a></li>
+    
+    <li><a href="/gpt/ken">Convert code from Python to Java with GPT</a></li>
+    
+    <li><a href="/gpt/jack">name for jacks prompt</a></li>
+
+
+
+
+    '''
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
@@ -63,10 +80,7 @@ def teamkevin():
     return '''
 
     <h1>Kevin Chen</h1>
-
-    <a href="/kevin/gptdemo">Ask ChatGPT about [topic]</a>
-
-
+    
     I worked on this project <br>
     
      <img src="/static/clown.jpg" />
@@ -80,9 +94,9 @@ def teamken():
 
     <h1>Ken Kirio</h1>
 
-    <a href="/ken/gptdemo">Convert code from Python to Java with GPT</a>
-
-
+    I worked on this project. <br />
+    Here's my GPT app: 
+    <a href="/gpt/ken">Convert code from Python to Java with GPT</a></li>
     
     '''
 
@@ -101,7 +115,7 @@ def index2():
     
     '''
 
-@app.route('/kevin/gptdemo', methods=['GET', 'POST'])
+@app.route('/gpt/kevin', methods=['GET', 'POST'])
 def kevin_gptdemo():
     ''' handle a get request by sending a form 
         and a post request by returning the GPT response
@@ -109,28 +123,31 @@ def kevin_gptdemo():
     '''
     if request.method == 'POST':
         prompt = request.form['prompt']
-        answer = gptAPI.getResponse(prompt)
+        answer = gptAPI.kevin_response(prompt)
         return f'''
-        <h1>GPT Demo</h1>
+        <h1>Travel Destinations</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
         <hr>
-        Here is the answer in text mode:
+        Some places to consider visiting:
         <div style="border:thin solid black">{answer}</div>
-        Here is the answer in "pre" mode:
+        Some places to consider visiting:
         <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('kevin_gptdemo')}> make another query</a>
+        <li><a href={url_for('kevin_gptdemo')}> make another query</a></li>
+        <li><a href={url_for('index')}> back to home</a></li>
+
+        
         '''
     else:
         return '''
-        <h1>GPT Demo App</h1>
-        Enter your query below
+        <h1>Travel Destinations</h1>
+        Enter a place you want to visit
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
         </form>
         '''
 
-@app.route('/ken/gptdemo', methods=['GET', 'POST'])
+@app.route('/gpt/ken', methods=['GET', 'POST'])
 def ken_gptdemo():
     ''' handle a get request by sending a form 
         and a post request by returning the GPT response
@@ -141,13 +158,13 @@ def ken_gptdemo():
         answer = gptAPI.ken_response(prompt)
         return f'''
         <h1>Ken's GPT Demo</h1>
+        The Python code:
         <pre style="bgcolor:yellow">{prompt}</pre>
         <hr>
-        Here is the answer in text mode:
-        <div style="border:thin solid black">{answer}</div>
-        Here is the answer in "pre" mode:
+        The Java code:
         <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('ken_gptdemo')}>Make another query</a>
+        <li><a href={url_for('ken_gptdemo')}>Make another query</a></li>
+        <li><a href={url_for('index')}> back to home</a></li>
         '''
     else:
         return '''
