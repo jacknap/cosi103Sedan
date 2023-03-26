@@ -5,7 +5,6 @@ import sqlite3
 
 def to_dict(tpl):
     ''' t is a tuple (rowid,title, desc,completed)'''
-    # print('t='+str(t))
     todo = {'item_no': tpl[0], 'amount': tpl[1],
             'category': tpl[2], 'date': tpl[3], 'desc': tpl[4]}
     return todo
@@ -55,17 +54,17 @@ class Transaction():
 
     def sumbymonth(self):
         ''' return transaction sorted by month '''
-        #print(self.run_query("SELECT FORMAT(date, 'MM') as date",()))
+        # not working
         return self.run_query("SELECT * FROM transactions GROUP BY FORMAT (date, 'MM')", ())
 
     def sumbyyear(self):
         ''' return transaction sorted by year '''
+        # working, but not correctly
         return self.run_query('SELECT * from transactions ORDER BY date', ())
 
-    def sumbycategory(self):
+    def sumbycategory(self, category):
         ''' return transaction sorted by category '''
-        # coppied from sumbyyear, not working
-        return self.run_query('SELECT * from transactions ORDER BY date', ())
+        return self.run_query("SELECT * from transactions WHERE category=?", (category,))
 
     def run_query(self, query, tpl):
         ''' return all of the uncompleted tasks as a list of dicts.'''

@@ -17,24 +17,25 @@ def print_usage():
                 Usage: \"3 item_no\"
             4. delete all transactions
             5. summarize transactions by date
-            6. summarize transactions by month (not working)
+            6. summarize transactions by month
             7. summarize transactions by year
             8. summarize transactions by category
+                Usage: \"8 category\"
             9. print this menu
             '''
           )
 
 
-def print_transactions(trans):
+def print_transactions(todos):
     ''' print the todo items '''
-    if len(trans) == 0:
+    if len(todos) == 0:
         print('no transactions to print')
         return
     print('\n')
     print("%-10s %-10s %-10s %-15s %-30s" %
           ('item #', 'amount', 'category', 'date', 'desc'))
     print('-'*60)
-    for item in trans:
+    for item in todos:
         values = tuple(item.values())  # (rowid,title,desc,completed)
         # print(values)
 
@@ -77,8 +78,11 @@ def process_args(arglist):
         print("Transactions sorted by year: ")
         print_transactions(trans.sumbyyear())
     elif arglist[0] == '8':
-        print("Transactions sorted by category: ")
-        print_transactions(trans.sumbyyear())
+        if len(arglist) != 2:
+            print("Incorrect syntax\nUsage: \"8 category\"\n")
+        else:
+            print("Transactions sorted by category: ")
+            print_transactions(trans.sumbycategory(arglist[1]))
     elif arglist[0] == "9":
         print_usage()
     else:
