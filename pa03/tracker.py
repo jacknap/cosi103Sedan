@@ -25,16 +25,16 @@ def print_usage():
           )
 
 
-def print_transactions(todos):
+def print_transactions(trans):
     ''' print the todo items '''
-    if len(todos) == 0:
+    if len(trans) == 0:
         print('no transactions to print')
         return
     print('\n')
     print("%-10s %-10s %-10s %-15s %-30s" %
           ('item #', 'amount', 'category', 'date', 'desc'))
     print('-'*60)
-    for item in todos:
+    for item in trans:
         values = tuple(item.values())  # (rowid,title,desc,completed)
         # print(values)
 
@@ -44,10 +44,8 @@ def print_transactions(todos):
 def process_args(arglist):
     ''' examine args and make appropriate calls to transactions '''
     trans = Transaction('transaction.db')
-    if arglist == []:
-        print_usage()
 
-    elif arglist[0] == "1":
+    if arglist[0] == "1":
         print_transactions(trans.show())
     elif arglist[0] == '2':
         if len(arglist) != 6:

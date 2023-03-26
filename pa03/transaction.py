@@ -1,15 +1,19 @@
+''' transaction.py - a class to make SQL queries to a database of transactions '''
+
 import sqlite3
 
 
-def toDict(t):
+def to_dict(tpl):
     ''' t is a tuple (rowid,title, desc,completed)'''
     # print('t='+str(t))
-    todo = {'item_no': t[0], 'amount': t[1],
-            'category': t[2], 'date': t[3], 'desc': t[4]}
+    todo = {'item_no': tpl[0], 'amount': tpl[1],
+            'category': tpl[2], 'date': tpl[3], 'desc': tpl[4]}
     return todo
 
 
 class Transaction():
+    ''' a class to make SQL queries to a database of transactions '''
+
     def __init__(self, dbfile):
         con = sqlite3.connect(dbfile)
         con.execute('''CREATE TABLE IF NOT EXISTS transactions
@@ -33,7 +37,9 @@ class Transaction():
 
     def add(self, item):
         ''' create a transaction item and add it to the todo table '''
-        return self.run_query("INSERT INTO transactions VALUES(?,?,?,?,?)", (item['item_no'], item['amount'], item['category'], item['date'], item['desc']))
+        return self.run_query("INSERT INTO transactions VALUES(?,?,?,?,?)",
+                              (item['item_no'], item['amount'], item['category'],
+                               item['date'], item['desc']))
 
     def clear(self):
         ''' delete all of the transaction '''
@@ -69,4 +75,4 @@ class Transaction():
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        return [toDict(t) for t in tuples]
+        return [to_dict(t) for t in tuples]
