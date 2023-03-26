@@ -54,8 +54,7 @@ class Transaction():
 
     def sumbydate(self, date):
         ''' return transaction from a given date '''
-        # not working
-        return self.run_query("SELECT * FROM transactions WHERE strftime('%Y-%m-%d', date)='?'", (date,))
+        return self.run_query("SELECT * FROM transactions WHERE strftime('%Y-%m-%d', date)=?", (date,))
 
     def sumbymonth(self, month):
         ''' return transaction from a given month '''
@@ -64,7 +63,7 @@ class Transaction():
     def sumbymonthandyear(self, year_month):
         ''' return transaction sorted by month '''
         # not working
-        return self.run_query("SELECT * FROM transactions WHERE strftime('%Y-%m', date)='?'", (year_month,))
+        return self.run_query("SELECT * FROM transactions WHERE strftime('%Y-%m', date)=?", (year_month,))
 
     def sumbyyear(self, year):
         ''' return transaction sorted by year '''
