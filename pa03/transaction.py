@@ -62,7 +62,6 @@ class Transaction():
 
     def sumbymonthandyear(self, year_month):
         ''' return transaction sorted by month '''
-        # not working
         return self.run_query("SELECT * FROM transactions WHERE strftime('%Y-%m', date)=?", (year_month,))
 
     def sumbyyear(self, year):

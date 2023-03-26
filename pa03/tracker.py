@@ -88,12 +88,14 @@ def process_args(arglist):
 
     elif arglist[0] == '6':
         if len(arglist) == 2:
-            if arglist[1].split('-') == 1:
+            if len(arglist[1].split('-')) == 1:
                 print("Transactions from month ", arglist[1], ": ", sep='')
                 print_transactions(trans.sumbymonth(arglist[1]))
-            elif arglist[1].split('-') == 2:
+            elif len(arglist[1].split('-')) == 2:
                 print("Transactions from ", arglist[1], ": ", sep='')
                 print_transactions(trans.sumbymonthandyear(arglist[1]))
+            else:
+                print("Incorrect syntax\nUsage: \"6 MM\" or \"6 YYYY-MM\"\n")
         else:
             print("Incorrect syntax\nUsage: \"6 MM\" or \"6 YYYY-MM\"\n")
 
