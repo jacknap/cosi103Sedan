@@ -4,7 +4,7 @@ import os
 
 def toDict(t):
     ''' t is a tuple (rowid,title, desc,completed)'''
-    print('t='+str(t))
+    #print('t='+str(t))
     todo = {'item_no':t[0], 'amount':t[1], 'category':t[2], 'date':t[3], 'desc' : t[4]}
     return todo
 
@@ -18,9 +18,6 @@ class Transaction():
                     desc VARCHAR(255))''',
                     ())
     
-    def selectActive(self):
-        ''' return all of the uncompleted tasks as a list of dicts.'''
-        return self.runQuery("SELECT rowid,* from todo where completed=0",())
 
     def show(self):
         ''' return all of the tasks as a list of dicts.'''
@@ -39,9 +36,15 @@ class Transaction():
         ''' delete a todo item '''
         return self.runQuery("DELETE FROM transactions WHERE item_no=(?)",(item_no,))
 
-    def setComplete(self,rowid):
-        ''' mark a todo item as completed '''
-        return self.runQuery("UPDATE todo SET completed=1 WHERE rowid=(?)",(rowid,))
+    def sumbydate(self):
+        return self.runQuery('SELECT * from transactions ORDER BY date', ())
+    
+    def sumbymonth(self):
+        #print(self.runQuery("SELECT FORMAT(date, 'MM') as date",()))
+        return self.runQuery("SELECT * FROM transactions GROUP BY FORMAT (date, 'MM')", ())
+    
+    def sumbyyear(self):
+        return self.runQuery('SELECT * from transactions ORDER BY date', ())
 
     def runQuery(self,query,tuple):
         ''' return all of the uncompleted tasks as a list of dicts.'''

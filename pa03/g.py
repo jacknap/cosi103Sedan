@@ -41,7 +41,7 @@ def process_args(arglist):
     trans = Transaction()
     if arglist==[]:
         print_usage()
-    
+   
     elif arglist[0]=="4":
         print_todos(trans.show())
     elif arglist[0]=='5':
@@ -50,19 +50,25 @@ def process_args(arglist):
         else:
             todo = {'item_no':arglist[1],'amount':arglist[2], 'category' :arglist[3] , 'date':arglist[4], 'desc' : arglist[5]}
             trans.add(todo)
-    elif arglist[0]=='complete':
-        if len(arglist)!= 2:
-            print_usage()
-        else:
-            todolist.setComplete(arglist[1])
     elif arglist[0] == '6' :
         if len(arglist)!= 2:
             print_usage()
         else:
             trans.delete(arglist[1])
-
+    elif arglist[0] =='7':
+        print("Sorting by date : ")
+        print_todos(trans.sumbydate())
+    elif arglist[0] =='8':
+        print("Sorting by month : ")
+        print_todos(trans.sumbymonth())
+    elif arglist[0] =='9':
+        print("Sorting by year : ")
+        print_todos(trans.sumbyyear())
     elif arglist[0]=='delete':
         trans.clear()
+    elif arglist[0]=="11":
+        
+        print_usage()
     else:
         print(arglist,"is not implemented")
         print_usage()
@@ -77,16 +83,20 @@ def toplevel():
         args = []
         while args!=['']:
             args = input("command> ").split(' ')
-            if args[0]=='add':
-                # join everyting after the name as a string
-                args = ['add',args[1]," ".join(args[2:])]
+
+            if args[0] == "0":
+                print("Quitting . . . Thanks for using this program!")
+                break
+            # elif args[0]=='add':
+            #     # join everyting after the name as a string
+            #     args = ['add',args[1]," ".join(args[2:])]
             process_args(args)
             print('-'*40+'\n'*3)
     else:
         # read the args and process them
         args = sys.argv[1:]
         process_args(args)
-        print('-'*40+'\n'*3)
+        print('-'*60+'\n'*2)
 
     
 
