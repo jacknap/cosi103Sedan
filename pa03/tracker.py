@@ -40,7 +40,7 @@ def print_todos(todos):
 
 
 def process_args(arglist):
-    ''' examine args and make appropriate calls to TodoList'''
+    ''' examine args and make appropriate calls to transactions '''
     trans = Transaction('transactions.db')
     if arglist == []:
         print_usage()
@@ -78,29 +78,28 @@ def process_args(arglist):
         print_usage()
 
 
-def toplevel():
-    ''' read the command args and process them'''
-    if len(sys.argv) == 1:
-        # they didn't pass any arguments,
-        # so prompt for them in a loop
+def main():
+    ''' top level function to process command line args and prompt for input '''
+    if len(sys.argv) == 1:  # no arguments passed, prompt for them in a loop
         print_usage()
         args = []
         while args != ['']:
-            args = input("command> ").split(' ')
-
+            args = input("> ").split(' ')
             if args[0] == "0":
-                print("Quitting . . . Thanks for using this program!")
                 break
+            elif args != ['']:
+                process_args(args)
             # elif args[0]=='add':
             #     # join everyting after the name as a string
             #     args = ['add',args[1]," ".join(args[2:])]
-            process_args(args)
+
             print('-'*60+'\n'*2)
+        print("Quitting . . . Thanks for using this program!")
     else:
-        # read the args and process them
+        # arguements passed, read and process them
         args = sys.argv[1:]
         process_args(args)
         print('-'*60+'\n'*2)
 
 
-toplevel()
+main()

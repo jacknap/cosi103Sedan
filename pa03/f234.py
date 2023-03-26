@@ -28,29 +28,32 @@ class Transaction():
                        ())
 
     def show(self):
-        ''' return all of the tasks as a list of dicts.'''
+        ''' return all of the transaction as a list of dicts '''
         return self.run_query("SELECT * from transactions", ())
 
     def add(self, item):
-        ''' create a todo item and add it to the todo table '''
-
+        ''' create a transaction item and add it to the todo table '''
         return self.run_query("INSERT INTO transactions VALUES(?,?,?,?,?)", (item['item_no'], item['amount'], item['category'], item['date'], item['desc']))
 
     def clear(self):
+        ''' delete all of the transaction '''
         return self.run_query("DELETE from transactions", ())
 
     def delete(self, item_no):
-        ''' delete a todo item '''
+        ''' delete a transaction item '''
         return self.run_query("DELETE FROM transactions WHERE item_no=(?)", (item_no,))
 
     def sumbydate(self):
+        ''' return transaction sorted by date '''
         return self.run_query('SELECT * from transactions ORDER BY date', ())
 
     def sumbymonth(self):
+        ''' return transaction sorted by month '''
         #print(self.run_query("SELECT FORMAT(date, 'MM') as date",()))
         return self.run_query("SELECT * FROM transactions GROUP BY FORMAT (date, 'MM')", ())
 
     def sumbyyear(self):
+        ''' return transaction sorted by year '''
         return self.run_query('SELECT * from transactions ORDER BY date', ())
 
     def run_query(self, query, tpl):
