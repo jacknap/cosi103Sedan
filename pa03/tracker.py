@@ -1,3 +1,5 @@
+''' tracker.py - a command line program to track transactions '''
+
 import sys
 from transaction import Transaction
 
@@ -50,35 +52,39 @@ def process_args(arglist):
     elif arglist[0] == '2':
         if len(arglist) != 6:
             print(
-                "Incorrect syntax\nUsage: \"2 item_no amount category YYYY-MM-DD desc\"")
+                "Incorrect syntax\nUsage: \"2 item_no amount category YYYY-MM-DD desc\"\n")
         else:
             todo = {'item_no': arglist[1], 'amount': arglist[2],
                     'category': arglist[3], 'date': arglist[4], 'desc': arglist[5]}
             trans.add(todo)
     elif arglist[0] == '3':
         if len(arglist) != 2:
-            print("Incorrect syntax\nUsage: \"3 item_no\"")
+            print("Incorrect syntax\nUsage: \"3 item_no\"\n")
         else:
             trans.delete(arglist[1])
     elif arglist[0] == '4':
-        trans.clear()
+        confirm = input(
+            "Are you sure you want to delete all transactions? (y/[n])\n> ")
+        if confirm in ('y', 'Y'):
+            trans.clear()
+        else:
+            print("Did not delete all transactions\n")
     elif arglist[0] == '5':
-        print("Sorting by date: ")
+        print("Transactions sorted by date: ")
         print_transactions(trans.sumbydate())
     elif arglist[0] == '6':
-        print("Sorting by month: ")
+        print("Transactions sorted by month: ")
         print_transactions(trans.sumbymonth())
     elif arglist[0] == '7':
-        print("Sorting by year: ")
+        print("Transactions sorted by year: ")
         print_transactions(trans.sumbyyear())
     elif arglist[0] == '8':
-        print("Sorting by category: ")
+        print("Transactions sorted by category: ")
         print_transactions(trans.sumbyyear())
     elif arglist[0] == "9":
         print_usage()
     else:
         print(arglist[0], "is not implemented\n")
-        print_usage()
 
 
 def main():
@@ -90,15 +96,14 @@ def main():
             args = input("> ").split(' ')
             if args[0] == "0":
                 break
-            elif args != ['']:
+            if args != ['']:
                 process_args(args)
-
-            print('-'*60+'\n'*2)
+            print('-'*60+'\n')
         print("Quitting . . . Thanks for using this program!")
     else:  # arguements passed, read and process them
         args = sys.argv[1:]
         process_args(args)
-        print('-'*60+'\n'*2)
+        print('-'*60+'\n')
 
 
 main()
