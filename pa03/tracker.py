@@ -44,7 +44,7 @@ def print_transactions(todos):
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to transactions '''
-    trans = Transaction('transaction.db')
+    trans = Transaction('transactions.db')
 
     if arglist[0] == "1":
         print_transactions(trans.show())
