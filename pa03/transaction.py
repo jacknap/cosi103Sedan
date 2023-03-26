@@ -46,16 +46,15 @@ class Transaction():
 
     def delete(self, item_no):
         ''' delete a transaction item '''
-        return self.run_query("DELETE FROM transactions WHERE item_no=(?)", (item_no,))
+        return self.run_query("DELETE FROM transactions WHERE item_no=?", (item_no,))
 
     def sumbydate(self):
         ''' return transaction sorted by date '''
         return self.run_query('SELECT * from transactions ORDER BY date', ())
 
-    def sumbymonth(self):
+    def sumbymonth(self, month):
         ''' return transaction sorted by month '''
-        # not working
-        return self.run_query("SELECT * FROM transactions GROUP BY FORMAT (date, 'MM')", ())
+        return self.run_query("SELECT * FROM transactions WHERE strftime('%m', date)=?", (month,))
 
     def sumbyyear(self):
         ''' return transaction sorted by year '''

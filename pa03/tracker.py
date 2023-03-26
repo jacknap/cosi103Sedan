@@ -72,8 +72,11 @@ def process_args(arglist):
         print("Transactions sorted by date: ")
         print_transactions(trans.sumbydate())
     elif arglist[0] == '6':
-        print("Transactions sorted by month: ")
-        print_transactions(trans.sumbymonth())
+        if len(arglist) != 2:
+            print("Incorrect syntax\nUsage: \"6 MM\"\n")
+        else:
+            print("Transactions sorted by month: ")
+            print_transactions(trans.sumbymonth(arglist[1]))
     elif arglist[0] == '7':
         print("Transactions sorted by year: ")
         print_transactions(trans.sumbyyear())
