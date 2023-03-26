@@ -56,6 +56,11 @@ class Transaction():
         ''' return transaction sorted by year '''
         return self.run_query('SELECT * from transactions ORDER BY date', ())
 
+    def sumbycategory(self):
+        ''' return transaction sorted by category '''
+        # coppied from sumbyyear, not working
+        return self.run_query('SELECT * from transactions ORDER BY date', ())
+
     def run_query(self, query, tpl):
         ''' return all of the uncompleted tasks as a list of dicts.'''
         con = sqlite3.connect('transaction.db')

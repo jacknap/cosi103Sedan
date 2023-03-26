@@ -8,14 +8,17 @@ def print_usage():
     ''' print an explanation of how to use this command '''
     print('''Enter a number to execute that command:
             0. quit
-            4. show transactions
-            5. add transaction
-            6. delete transaction
-            7. summarize transactions by date
-            8. summarize transactions by month
-            9. summarize transactions by year
-            10. summarize transactions by category
-            11. print this menu
+            1. show transactions
+            2. add transaction
+                Usage: \"2 item_no amount category YYYY-MM-DD desc\"
+            3. delete transaction
+                Usage: \"3 item_no\"
+            4. delete all transactions
+            5. summarize transactions by date
+            6. summarize transactions by month (not working)
+            7. summarize transactions by year
+            8. summarize transactions by category
+            9. print this menu
             '''
           )
 
@@ -42,32 +45,36 @@ def process_args(arglist):
     if arglist == []:
         print_usage()
 
-    elif arglist[0] == "4":
+    elif arglist[0] == "1":
         print_transactions(trans.show())
-    elif arglist[0] == '5':
+    elif arglist[0] == '2':
         if len(arglist) != 6:
-            print_usage()
+            print(
+                "Incorrect syntax\nUsage: \"2 item_no amount category YYYY-MM-DD desc\"")
         else:
             todo = {'item_no': arglist[1], 'amount': arglist[2],
                     'category': arglist[3], 'date': arglist[4], 'desc': arglist[5]}
             trans.add(todo)
-    elif arglist[0] == '6':
+    elif arglist[0] == '3':
         if len(arglist) != 2:
-            print_usage()
+            print("Incorrect syntax\nUsage: \"3 item_no\"")
         else:
             trans.delete(arglist[1])
-    elif arglist[0] == '7':
-        print("Sorting by date : ")
-        print_transactions(trans.sumbydate())
-    elif arglist[0] == '8':
-        print("Sorting by month : ")
-        print_transactions(trans.sumbymonth())
-    elif arglist[0] == '9':
-        print("Sorting by year : ")
-        print_transactions(trans.sumbyyear())
-    elif arglist[0] == 'delete':
+    elif arglist[0] == '4':
         trans.clear()
-    elif arglist[0] == "11":
+    elif arglist[0] == '5':
+        print("Sorting by date: ")
+        print_transactions(trans.sumbydate())
+    elif arglist[0] == '6':
+        print("Sorting by month: ")
+        print_transactions(trans.sumbymonth())
+    elif arglist[0] == '7':
+        print("Sorting by year: ")
+        print_transactions(trans.sumbyyear())
+    elif arglist[0] == '8':
+        print("Sorting by category: ")
+        print_transactions(trans.sumbyyear())
+    elif arglist[0] == "9":
         print_usage()
     else:
         print(arglist[0], "is not implemented\n")
@@ -85,14 +92,10 @@ def main():
                 break
             elif args != ['']:
                 process_args(args)
-            # elif args[0]=='add':
-            #     # join everyting after the name as a string
-            #     args = ['add',args[1]," ".join(args[2:])]
 
             print('-'*60+'\n'*2)
         print("Quitting . . . Thanks for using this program!")
-    else:
-        # arguements passed, read and process them
+    else:  # arguements passed, read and process them
         args = sys.argv[1:]
         process_args(args)
         print('-'*60+'\n'*2)
