@@ -9,7 +9,16 @@ def toDict(t):
     return todo
 
 class Transaction():
-    def __init__(self):
+    def __init__(self, dbfile):
+        con = sqlite3.connect(dbfile)
+        cur = con.cursor()
+        con.execute('''CREATE TABLE IF NOT EXISTS transactions
+                    (item_no INT, 
+                    amount INT,
+                    category VARCHAR(255),
+                    date DATE,
+                    desc VARCHAR(255))''')
+        con.commit()
         self.runQuery('''CREATE TABLE IF NOT EXISTS transactions
                     (item_no INT, 
                     amount INT,

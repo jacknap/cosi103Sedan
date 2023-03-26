@@ -38,7 +38,7 @@ def print_todos(todos):
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to TodoList'''
-    trans = Transaction()
+    trans = Transaction('transactions.db')
     if arglist==[]:
         print_usage()
    
@@ -91,7 +91,7 @@ def toplevel():
             #     # join everyting after the name as a string
             #     args = ['add',args[1]," ".join(args[2:])]
             process_args(args)
-            print('-'*40+'\n'*3)
+            print('-'*60+'\n'*2)
     else:
         # read the args and process them
         args = sys.argv[1:]
