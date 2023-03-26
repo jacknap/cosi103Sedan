@@ -79,10 +79,10 @@ def process_args(arglist):
     elif arglist[0] == '5':
         if len(arglist) == 1:
             print("Transactions sorted by date: ")
-            print_transactions(trans.sortbydate())
+            print_transactions(trans.sort_date())
         elif len(arglist) == 2:
             print("Transactions from ", arglist[1], ": ", sep='')
-            print_transactions(trans.sumbydate(arglist[1]))
+            print_transactions(trans.summary_date(arglist[1]))
         else:
             print("Incorrect syntax\nUsage: \"5 YYYY-MM-DD\" or \"5\"\n")
 
@@ -90,10 +90,10 @@ def process_args(arglist):
         if len(arglist) == 2:
             if len(arglist[1].split('-')) == 1:
                 print("Transactions from month ", arglist[1], ": ", sep='')
-                print_transactions(trans.sumbymonth(arglist[1]))
+                print_transactions(trans.summary_month(arglist[1]))
             elif len(arglist[1].split('-')) == 2:
                 print("Transactions from ", arglist[1], ": ", sep='')
-                print_transactions(trans.sumbymonthandyear(arglist[1]))
+                print_transactions(trans.summary_month_year(arglist[1]))
             else:
                 print("Incorrect syntax\nUsage: \"6 MM\" or \"6 YYYY-MM\"\n")
         else:
@@ -104,14 +104,14 @@ def process_args(arglist):
             print("Incorrect syntax\nUsage: \"7 YYYY\"\n")
         else:
             print("Transactions from ", arglist[1], ": ", sep='')
-            print_transactions(trans.sumbyyear(arglist[1]))
+            print_transactions(trans.summary_year(arglist[1]))
 
     elif arglist[0] == '8':
         if len(arglist) != 2:
             print("Incorrect syntax\nUsage: \"8 category\"\n")
         else:
             print("Transactions from the ", arglist[1], " category: ", sep='')
-            print_transactions(trans.sumbycategory(arglist[1]))
+            print_transactions(trans.summary_category(arglist[1]))
 
     elif arglist[0] == "9":
         print_usage()

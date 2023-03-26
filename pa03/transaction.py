@@ -48,27 +48,27 @@ class Transaction():
         ''' delete a transaction item '''
         return self.run_query("DELETE FROM transactions WHERE item_no=?", (item_no,))
 
-    def sortbydate(self):
+    def sort_date(self):
         ''' return transaction sorted by date '''
         return self.run_query('SELECT * from transactions ORDER BY date', ())
 
-    def sumbydate(self, date):
-        ''' return transaction from a given date '''
+    def summary_date(self, date):
+        ''' return transactions from a given date '''
         return self.run_query("SELECT * FROM transactions WHERE strftime('%Y-%m-%d', date)=?", (date,))
 
-    def sumbymonth(self, month):
-        ''' return transaction from a given month '''
+    def summary_month(self, month):
+        ''' return transactions from a given month '''
         return self.run_query("SELECT * FROM transactions WHERE strftime('%m', date)=?", (month,))
 
-    def sumbymonthandyear(self, year_month):
-        ''' return transaction sorted by month '''
+    def summary_month_year(self, year_month):
+        ''' return transactions from a given month and year '''
         return self.run_query("SELECT * FROM transactions WHERE strftime('%Y-%m', date)=?", (year_month,))
 
-    def sumbyyear(self, year):
-        ''' return transaction sorted by year '''
+    def summary_year(self, year):
+        ''' return transactions from a given year '''
         return self.run_query("SELECT * FROM transactions WHERE strftime('%Y', date)=?", (year,))
 
-    def sumbycategory(self, category):
+    def summary_category(self, category):
         ''' return transaction from a given category '''
         return self.run_query("SELECT * from transactions WHERE category=?", (category,))
 
