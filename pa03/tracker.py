@@ -1,5 +1,5 @@
 import sys
-from f234 import Transaction
+from transaction import Transaction
 
 
 # here are some helper functions ...
@@ -23,7 +23,7 @@ def print_usage():
           )
 
 
-def print_todos(todos):
+def print_transactions(todos):
     ''' print the todo items '''
     if len(todos) == 0:
         print('no transactions to print')
@@ -46,7 +46,7 @@ def process_args(arglist):
         print_usage()
 
     elif arglist[0] == "4":
-        print_todos(trans.show())
+        print_transactions(trans.show())
     elif arglist[0] == '5':
         if len(arglist) != 6:
             print_usage()
@@ -61,13 +61,13 @@ def process_args(arglist):
             trans.delete(arglist[1])
     elif arglist[0] == '7':
         print("Sorting by date : ")
-        print_todos(trans.sumbydate())
+        print_transactions(trans.sumbydate())
     elif arglist[0] == '8':
         print("Sorting by month : ")
-        print_todos(trans.sumbymonth())
+        print_transactions(trans.sumbymonth())
     elif arglist[0] == '9':
         print("Sorting by year : ")
-        print_todos(trans.sumbyyear())
+        print_transactions(trans.sumbyyear())
     elif arglist[0] == 'delete':
         trans.clear()
     elif arglist[0] == "11":
