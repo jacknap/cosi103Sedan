@@ -6,11 +6,8 @@ from transaction import Transaction
 
 def print_usage():
     ''' print an explanation of how to use this command '''
-    print('''Enter a number to execute that command. Commands 1-3 are not implemented:
+    print('''Enter a number to execute that command:
             0. quit
-            1. show categories
-            2. add category
-            3. modify category
             4. show transactions
             5. add transaction
             6. delete transaction
@@ -41,7 +38,7 @@ def print_transactions(todos):
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to transactions '''
-    trans = Transaction('transactions.db')
+    trans = Transaction('transaction.db')
     if arglist == []:
         print_usage()
 
@@ -71,10 +68,9 @@ def process_args(arglist):
     elif arglist[0] == 'delete':
         trans.clear()
     elif arglist[0] == "11":
-
         print_usage()
     else:
-        print(arglist, "is not implemented")
+        print(arglist[0], "is not implemented\n")
         print_usage()
 
 
