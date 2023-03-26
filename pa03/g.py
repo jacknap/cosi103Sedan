@@ -1,5 +1,5 @@
-from f234 import Transaction
 import sys
+from f234 import Transaction
 
 
 # here are some helper functions ...
@@ -20,68 +20,72 @@ def print_usage():
             10. summarize transactions by category
             11. print this menu
             '''
-            )
+          )
+
 
 def print_todos(todos):
     ''' print the todo items '''
-    if len(todos)==0:
+    if len(todos) == 0:
         print('no transactions to print')
         return
     print('\n')
-    print("%-10s %-10s %-10s %-15s %-30s"%('item #','amount','category','date', 'desc'))
+    print("%-10s %-10s %-10s %-15s %-30s" %
+          ('item #', 'amount', 'category', 'date', 'desc'))
     print('-'*60)
     for item in todos:
-        values = tuple(item.values()) #(rowid,title,desc,completed)
-        #print(values)
-        
-        print("%-10s %-10s %-10s %-15s %-30s"%values)
+        values = tuple(item.values())  # (rowid,title,desc,completed)
+        # print(values)
+
+        print("%-10s %-10s %-10s %-15s %-30s" % values)
+
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to TodoList'''
     trans = Transaction('transactions.db')
-    if arglist==[]:
+    if arglist == []:
         print_usage()
-   
-    elif arglist[0]=="4":
+
+    elif arglist[0] == "4":
         print_todos(trans.show())
-    elif arglist[0]=='5':
-        if len(arglist)!=6:
+    elif arglist[0] == '5':
+        if len(arglist) != 6:
             print_usage()
         else:
-            todo = {'item_no':arglist[1],'amount':arglist[2], 'category' :arglist[3] , 'date':arglist[4], 'desc' : arglist[5]}
+            todo = {'item_no': arglist[1], 'amount': arglist[2],
+                    'category': arglist[3], 'date': arglist[4], 'desc': arglist[5]}
             trans.add(todo)
-    elif arglist[0] == '6' :
-        if len(arglist)!= 2:
+    elif arglist[0] == '6':
+        if len(arglist) != 2:
             print_usage()
         else:
             trans.delete(arglist[1])
-    elif arglist[0] =='7':
+    elif arglist[0] == '7':
         print("Sorting by date : ")
         print_todos(trans.sumbydate())
-    elif arglist[0] =='8':
+    elif arglist[0] == '8':
         print("Sorting by month : ")
         print_todos(trans.sumbymonth())
-    elif arglist[0] =='9':
+    elif arglist[0] == '9':
         print("Sorting by year : ")
         print_todos(trans.sumbyyear())
-    elif arglist[0]=='delete':
+    elif arglist[0] == 'delete':
         trans.clear()
-    elif arglist[0]=="11":
-        
+    elif arglist[0] == "11":
+
         print_usage()
     else:
-        print(arglist,"is not implemented")
+        print(arglist, "is not implemented")
         print_usage()
 
 
 def toplevel():
     ''' read the command args and process them'''
-    if len(sys.argv)==1:
-        # they didn't pass any arguments, 
+    if len(sys.argv) == 1:
+        # they didn't pass any arguments,
         # so prompt for them in a loop
         print_usage()
         args = []
-        while args!=['']:
+        while args != ['']:
             args = input("command> ").split(' ')
 
             if args[0] == "0":
@@ -98,6 +102,5 @@ def toplevel():
         process_args(args)
         print('-'*60+'\n'*2)
 
-    
 
 toplevel()
