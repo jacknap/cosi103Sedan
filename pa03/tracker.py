@@ -1,9 +1,9 @@
 ''' tracker.py - a command line program to track transactions '''
 
 import sys
-from transaction import Transaction
+from transactions import Transaction
 
-
+#written by jack + ken + kevin
 def print_usage():
     ''' print an explanation of how to use this command '''
     print('''Enter a number to execute that command:
@@ -13,7 +13,7 @@ def print_usage():
                 Usage: \"2 item_no amount category YYYY-MM-DD description\"
             3. delete transaction
                 Usage: \"3 item_no\"
-            4. delete all transactions
+            4. delete all tran5sactions
             5. summarize transactions by date
                 Usage: \"5 YYYY-MM-DD\" for items from the given date
                     or \"5\" for all items sorted by date
@@ -28,7 +28,7 @@ def print_usage():
             '''
           )
 
-
+#written by kevin
 def print_transactions(transactions):
     ''' print the transaction items '''
     if len(transactions) == 0:
@@ -43,7 +43,7 @@ def print_transactions(transactions):
 
         print("%-10s %-10s %-10s %-15s %-30s" % values)
 
-
+#written by ken + kevin + jack
 def process_args(arglist):
     ''' examine args and make appropriate calls to transactions '''
     trans = Transaction('transactions.db')
@@ -117,7 +117,7 @@ def process_args(arglist):
     else:
         print(arglist[0], "is not implemented\n")
 
-
+#written by jack + kevin
 def main():
     ''' top level function to process command line args and prompt for input '''
     if len(sys.argv) == 1:  # no arguments passed, prompt for them in a loop
