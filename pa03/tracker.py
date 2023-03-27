@@ -1,7 +1,7 @@
 ''' tracker.py - a command line program to track transactions '''
 
 import sys
-from transaction import Transaction
+from transactions import Transaction
 
 
 def print_usage():
