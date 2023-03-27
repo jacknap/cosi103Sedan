@@ -1,9 +1,6 @@
-from transaction import Transaction
-import pytest
+''' Test each method of the Transaction class. Run using pytest. '''
 
-'''
-Test each method of the Transaction class. Run using pytest.
-'''
+from transactions import Transaction
 
 trans = Transaction("transactions.db")
 trans.clear()
@@ -17,12 +14,14 @@ item3 = {'item_no': '3', 'amount': '2', 'category': 'meat',
 
 
 def test_show():
+    ''' Test show method '''
     trans.clear()
     expected = []
     assert trans.show() == expected
 
 
 def test_add():
+    ''' Test add method '''
     trans.clear()
     expected = [{'item_no': 1, 'amount': 2, 'category': 'fruit',
                  'date': '2023-03-25', 'desc': 'apples'}]
@@ -31,6 +30,7 @@ def test_add():
 
 
 def test_clear():
+    ''' Test clear method '''
     trans.clear()
     trans.add(item1)
     trans.clear()
@@ -39,6 +39,7 @@ def test_clear():
 
 
 def test_delete():
+    ''' Test delete method '''
     trans.clear()
     trans.add(item1)
     trans.add(item2)
@@ -49,6 +50,7 @@ def test_delete():
 
 
 def test_sort_date():
+    ''' Test sort_date method '''
     trans.clear()
     trans.add(item1)
     trans.add(item2)
@@ -63,6 +65,7 @@ def test_sort_date():
 
 
 def test_summary_date():
+    ''' Test summary_date method '''
     trans.clear()
     trans.add(item1)
     trans.add(item2)
@@ -73,6 +76,7 @@ def test_summary_date():
 
 
 def test_summary_month():
+    ''' Test summary_month method '''
     trans.clear()
     trans.add(item1)
     trans.add(item2)
@@ -83,6 +87,7 @@ def test_summary_month():
 
 
 def test_summary_month_year():
+    ''' Test summary_month_year method '''
     trans.clear()
     trans.add(item1)
     trans.add(item2)
@@ -93,6 +98,7 @@ def test_summary_month_year():
 
 
 def test_summary_year():
+    ''' Test summary_year method '''
     trans.clear()
     trans.add(item1)
     trans.add(item2)
@@ -103,6 +109,7 @@ def test_summary_year():
 
 
 def test_summary_category():
+    ''' Test summary_category method '''
     trans.clear()
     trans.add(item1)
     trans.add(item2)

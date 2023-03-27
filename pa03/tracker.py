@@ -3,7 +3,9 @@
 import sys
 from transactions import Transaction
 
-#written by jack + ken + kevin
+# written by jack + ken + kevin
+
+
 def print_usage():
     ''' print an explanation of how to use this command '''
     print('''Enter a number to execute that command:
@@ -28,7 +30,9 @@ def print_usage():
             '''
           )
 
-#written by kevin
+# written by kevin
+
+
 def print_transactions(transactions):
     ''' print the transaction items '''
     if len(transactions) == 0:
@@ -43,7 +47,9 @@ def print_transactions(transactions):
 
         print("%-10s %-10s %-10s %-15s %-30s" % values)
 
-#written by ken + kevin + jack
+# written by ken + kevin + jack
+
+
 def process_args(arglist):
     ''' examine args and make appropriate calls to transactions '''
     trans = Transaction('transactions.db')
@@ -117,7 +123,9 @@ def process_args(arglist):
     else:
         print(arglist[0], "is not implemented\n")
 
-#written by jack + kevin
+# written by jack + kevin
+
+
 def main():
     ''' top level function to process command line args and prompt for input '''
     if len(sys.argv) == 1:  # no arguments passed, prompt for them in a loop
