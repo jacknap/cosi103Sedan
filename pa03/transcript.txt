@@ -1,9 +1,11 @@
-(base) PS C:\Users\jackn\Documents\Work\Software Engineering\Code\cosi103Sedan\pa03> pylint .\transactions.py
+[written by kevin and jack]
+
+cosi103Sedan\pa03> pylint .\transactions.py
 
 --------------------------------------------------------------------
 Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
-(base) PS C:\Users\jackn\Documents\Work\Software Engineering\Code\cosi103Sedan\pa03> pylint .\tracker.py
+cosi103Sedan\pa03> pylint .\tracker.py
 ************* Module tracker
 tracker.py:41:10: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
 tracker.py:53:0: R0912: Too many branches (28/12) (too-many-branches)
@@ -12,12 +14,12 @@ tracker.py:53:0: R0915: Too many statements (58/50) (too-many-statements)
 ------------------------------------------------------------------
 Your code has been rated at 9.49/10 (previous run: 9.49/10, +0.00)
 
-(base) PS C:\Users\jackn\Documents\Work\Software Engineering\Code\cosi103Sedan\pa03> pylint .\test_transaction.py
+cosi103Sedan\pa03> pylint .\test_transaction.py
 
 --------------------------------------------------------------------
 Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
-(base) PS C:\Users\jackn\Documents\Work\Software Engineering\Code\cosi103Sedan\pa03> pytest
+cosi103Sedan\pa03> pytest
 =================================================================== test session starts ===================================================================
 platform win32 -- Python 3.9.16, pytest-7.1.2, pluggy-1.0.0
 rootdir: C:\Users\jackn\Documents\Work\Software Engineering\Code\cosi103Sedan\pa03
@@ -28,7 +30,8 @@ test_transaction.py ..........                                                  
 
 =================================================================== 10 passed in 0.69s ==================================================================== 
 
-PS C:\Users\kevinchen\.vscode\.vscode> & C:/Users/kevinchen/AppData/Local/Programs/Python/Python311/python.exe c:/Users/kevinchen/.vscode/tracker.py
+
+cosi103Sedan\pa03> python tracker.py
 Enter a number to execute that command:
             0. quit
             1. show transactions
@@ -251,4 +254,3 @@ no transactions to print
 
 > 0
 Quitting . . . Thanks for using this program!
-PS C:\Users\kevinchen\.vscode\.vscode>

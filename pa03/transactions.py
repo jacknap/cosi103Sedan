@@ -2,9 +2,8 @@
 
 import sqlite3
 
+
 # written by jack
-
-
 def to_dict(tpl):
     ''' t is a tuple (item_no,amount,category,date, desc)'''
     todo = {'item_no': tpl[0], 'amount': tpl[1],
@@ -14,8 +13,8 @@ def to_dict(tpl):
 
 class Transaction():
     ''' a class to make SQL queries to a database of transactions '''
-    # written by jack + kevin
 
+    # written by jack + kevin
     def __init__(self, dbfile):
         '''Constructor for Transaction. dbfile is file name of the database '''
         self.dbfile = dbfile

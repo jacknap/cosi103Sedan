@@ -13,6 +13,7 @@ item3 = {'item_no': '3', 'amount': '2', 'category': 'meat',
          'date': '2022-02-25', 'desc': 'beef'}
 
 
+# written by kevin
 def test_show():
     ''' Test show method '''
     trans.clear()
@@ -20,6 +21,7 @@ def test_show():
     assert trans.show() == expected
 
 
+# written by kevin
 def test_add():
     ''' Test add method '''
     trans.clear()
@@ -29,6 +31,7 @@ def test_add():
     assert trans.show() == expected
 
 
+# written by kevin + jack
 def test_clear():
     ''' Test clear method '''
     trans.clear()
@@ -38,6 +41,7 @@ def test_clear():
     assert trans.show() == expected
 
 
+# written by kevin
 def test_delete():
     ''' Test delete method '''
     trans.clear()
@@ -49,6 +53,7 @@ def test_delete():
     assert trans.show() == expected
 
 
+# written by jack
 def test_sort_date():
     ''' Test sort_date method '''
     trans.clear()
@@ -64,6 +69,7 @@ def test_sort_date():
     assert trans.sort_date() == expected
 
 
+# written by jack
 def test_summary_date():
     ''' Test summary_date method '''
     trans.clear()
@@ -75,6 +81,7 @@ def test_summary_date():
     assert trans.summary_date('2022-02-25') == expected
 
 
+# written by jack
 def test_summary_month():
     ''' Test summary_month method '''
     trans.clear()
@@ -86,6 +93,7 @@ def test_summary_month():
     assert trans.summary_month('01') == expected
 
 
+# written by jack
 def test_summary_month_year():
     ''' Test summary_month_year method '''
     trans.clear()
@@ -97,6 +105,7 @@ def test_summary_month_year():
     assert trans.summary_month_year('2021-01') == expected
 
 
+# written by jack
 def test_summary_year():
     ''' Test summary_year method '''
     trans.clear()
@@ -108,6 +117,7 @@ def test_summary_year():
     assert trans.summary_year('2023') == expected
 
 
+# written by jack
 def test_summary_category():
     ''' Test summary_category method '''
     trans.clear()
