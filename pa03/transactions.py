@@ -3,12 +3,11 @@
 import sqlite3
 
 
-# written by jack
 def to_dict(tpl):
-    ''' t is a tuple (item_no,amount,category,date, desc)'''
-    todo = {'item_no': tpl[0], 'amount': tpl[1],
-            'category': tpl[2], 'date': tpl[3], 'desc': tpl[4]}
-    return todo
+    ''' tpl is a tuple (item_no, amount, category, date, desc)'''
+    transaction = {'item_no': tpl[0], 'amount': tpl[1],
+                   'category': tpl[2], 'date': tpl[3], 'desc': tpl[4]}
+    return transaction
 
 
 class Transaction():
@@ -16,7 +15,7 @@ class Transaction():
 
     # written by jack + kevin
     def __init__(self, dbfile):
-        '''Constructor for Transaction. dbfile is file name of the database '''
+        ''' Constructor for Transaction. dbfile is file name of the database '''
         self.dbfile = dbfile
         con = sqlite3.connect(dbfile)
         con.execute('''CREATE TABLE IF NOT EXISTS transactions
