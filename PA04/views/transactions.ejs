@@ -1,0 +1,31 @@
+<h1> Transactions Table for <%= user.username %> </h1>
+
+<p> Here is a table of your transactions. </p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>description</th>
+            <th>amount</th>
+            <th>category</th>
+            <th>date</th>
+        </tr>
+    </thead>
+    
+</table>
+<form>
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required>
+    <br>
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" required>
+    <br>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" step="0.01" required>
+    <br>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+    <br>
+
+    <bubble><input type="submit" value="Submit"></bubble>
+</form>
