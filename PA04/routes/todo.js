@@ -94,7 +94,7 @@ router.get('/todo/edit/:itemId',
        await ToDoItem.findById(req.params.itemId);
       //res.render('edit', { item });
       res.locals.item = item
-      res.render('edit')
+      res.render('editTodo')
       //res.json(item)
 });
 
