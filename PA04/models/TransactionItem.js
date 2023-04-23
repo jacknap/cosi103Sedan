@@ -3,7 +3,7 @@ const mongoose = require( 'mongoose' );
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-var transactionItemSchema = Schema( {
+var transactionItemSchema = new Schema( {
   description: String,
   amount: Number,
   category: String,
@@ -11,4 +11,4 @@ var transactionItemSchema = Schema( {
   userId: {type:ObjectId, ref:'user' }
 } );
 
-module.exports = mongoose.model( 'TransactionItem', transactionItemSchema );
+module.exports = mongoose.model('TransactionItem', transactionItemSchema );

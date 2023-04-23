@@ -116,7 +116,7 @@ router.get('/todo/byUser',
             await ToDoItem.aggregate(
                 [ 
 
-                  {$group:{_id:'$userId',
+                  {$group:{_id:'$description',
                     total:{$count:{}}
                     }},
                   {$sort:{total:-1}},              
@@ -127,7 +127,7 @@ router.get('/todo/byUser',
                    {path:'_id',
                    select:['username','age']})
 
-        //res.json(results)
+        res.json(results)
         res.render('summarizeByUser',{results})
 });
 
