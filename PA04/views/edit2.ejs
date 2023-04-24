@@ -1,26 +1,27 @@
 <pre>
-    <%= JSON.stringify(item,null,5) %>
+    <%= JSON.stringify(items,null,5) %>
 </pre>
 <form id = "input" method="post" action="/transactions/update">
     <label for="description">New Description:</label>
     <input type="text" id="description" name="description" required
-    value="<%= item.description %>">
+    value = <%= items.description %> >
     <br>
     <label for="category">New Category:</label>
-    <input type="text" id="category" name="category" required
-    value = "<%= item.category %>">
+    <input type="text" id="category" name="category" required 
+    value = <%= items.category %>>
     <br>
     <label for="amount">New Amount:</label>
     <input type="number" id="amount" name="amount" step="0.01" required
-    value = "<%= item.amount %>">
-    >
+    value = <%= items.amount %>>
     <br>
     <label for="date">New Date:</label>
     <input type="date" id="date" name="date" required
-    value = "<%= item.date %>">
-    >
+    value = <%= items.date %>>
 
     <br>
 
     <input type="submit" value="Update">
 </form>
+
+
+
