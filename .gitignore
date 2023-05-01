@@ -1,3 +1,4 @@
-
+**/__pycache__
+**/node_modules/
 ca01/api-key
 pa03/transactions.db
