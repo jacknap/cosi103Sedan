@@ -7,6 +7,8 @@ const layouts = require("express-ejs-layouts");
 const pw_auth_router = require("./routes/pwauth");
 const kenRouter = require("./routes/ken");
 const jackRouter = require("./routes/jack");
+const kevinRouter = require("./routes/kevin");
+
 
 const User = require("./models/User");
 
@@ -93,6 +95,8 @@ app.get("/", (req, res, next) => {
 	res.render("home");
 });
 
+// TODO: Add routes for about, index
+
 app.get("/index", isLoggedIn, (req, res, next) => {
 	res.render("index");
 });
@@ -105,12 +109,16 @@ app.get("/gpt", isLoggedIn, (req, res, next) => {
 	res.render("gpt");
 });
 
-app.get("/about", isLoggedIn, (req, res, next) => {
-	res.render("about");
-});
+app.get('/about',
+  isLoggedIn,
+  (req,res,next) => {
+    res.render('about');
+  }
+)
 
 app.use(kenRouter);
 app.use(jackRouter);
+app.use(kevinRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
