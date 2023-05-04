@@ -127,7 +127,7 @@ router.get('/todo/byUser',
                    {path:'_id',
                    select:['username','age']})
 
-        res.json(results)
+        //res.json(results)
         res.render('summarizeByUser',{results})
 });
 
