@@ -12,7 +12,7 @@ const User = require('./models/User');
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
 /* **************************************** */
-const mongodb_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pa02';
+const mongodb_URI = process.env.MONGODB_URI || 'mongodb://0.0.0.0np:27017/ca02';
 console.log('MONGODB_URI=',process.env.MONGODB_URI);
 
 const mongoose = require( 'mongoose' );
@@ -111,6 +111,13 @@ app.get('/gpt',
   isLoggedIn,
   (req,res,next) => {
     res.render('gpt');
+  }
+)
+
+app.get('/about',
+  isLoggedIn,
+  (req,res,next) => {
+    res.render('about');
   }
 )
 
