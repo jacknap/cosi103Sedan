@@ -93,8 +93,6 @@ app.get("/", (req, res, next) => {
 	res.render("home");
 });
 
-// TODO: Add routes for about, index
-
 app.get("/index", isLoggedIn, (req, res, next) => {
 	res.render("index");
 });
@@ -107,12 +105,9 @@ app.get("/gpt", isLoggedIn, (req, res, next) => {
 	res.render("gpt");
 });
 
-app.get('/about',
-  isLoggedIn,
-  (req,res,next) => {
-    res.render('about');
-  }
-)
+app.get("/about", isLoggedIn, (req, res, next) => {
+	res.render("about");
+});
 
 app.use(kenRouter);
 app.use(jackRouter);
