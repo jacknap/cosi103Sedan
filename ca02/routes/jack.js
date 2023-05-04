@@ -18,7 +18,17 @@ router.get("/gpt/jack", (req, res, next) => {
 	res.render("jackInput");
 });
 
-router.post("/gpt/jack", async (req, res, next) => {});
+router.post("/gpt/jack", async (req, res, next) => {
+	res.locals.prompt = req.body.query;
+	const gptQuery = new GptQuery({
+		query: req.body.query,
+		date: req.body.date,
+		userId: req.user._id,
+	});
+	await gptQuery.save();
+	res.locals.response = await askGpt(req.body.query);
+	res.render("jackResponse");
+});
 
 const askGpt = async (query) => {
 	let completion = openai.createCompletion({
