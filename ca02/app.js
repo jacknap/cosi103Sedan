@@ -14,8 +14,13 @@ const User = require("./models/User");
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
 /* **************************************** */
-const mongodb_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/ca02";
-console.log("MONGODB_URI=", process.env.MONGODB_URI);
+const mongodb_URI =
+	"mongodb+srv://cs103aSpr23:oDyglzBvRw47EJAU@cluster0.kgugl.mongodb.net/?retryWrites=true&w=majority" ||
+	"mongodb://127.0.0.1:27017/ca02";
+console.log(
+	"MONGODB_URI=",
+	"mongodb+srv://cs103aSpr23:oDyglzBvRw47EJAU@cluster0.kgugl.mongodb.net/?retryWrites=true&w=majority"
+);
 
 const mongoose = require("mongoose");
 
@@ -117,6 +122,7 @@ app.post("/gpt", isLoggedIn, async (req, res, next) => {
 	console.log("q is " + q);
 	res.redirect("/gpt");
 });
+
 app.get("/gpt", isLoggedIn, async (req, res, next) => {
 	//let quitem2 = res.locals.query
 	let quitem = await QueryItem.find({userId: req.user._id});
@@ -124,6 +130,11 @@ app.get("/gpt", isLoggedIn, async (req, res, next) => {
 
 	//res.json(quitem)
 	res.render("gpt", {quitem});
+});
+
+app.post("/gpt/delete", isLoggedIn, async (req, res) => {
+	await QueryItem.deleteOne({input: req.body.input, userId: req.user._i});
+	res.redirect("/gpt");
 });
 
 app.use(kenRouter);

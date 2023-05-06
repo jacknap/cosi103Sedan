@@ -1,42 +1,43 @@
-
-<div class = "row">
-	<div class="col">
-		<h1>Team Mid-Sized Sedan</h1>
+<div class="row">
+	<h1>Team Mid-Sized Sedan</h1>
 	<ul>
 		<li><a href="/gpt/kevin">Travel destinations with GPT</a></li>
 		<li><a href="/gpt/ken">Convert code from Python to Java with GPT</a></li>
-		<li><a href="/gpt/jack">Get the runtime of a python function with GPT</a></li>
+		<li>
+			<a href="/gpt/jack">Get the runtime of a python function with GPT</a>
+		</li>
 	</ul>
-
-	</div>
-
-	<div class="col">
-
-		<h1> Recent Requests </h1>
-
-
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Your Query</th>
-					<th>GPT response</th>
-					
-				</tr>
-			</thead>
-			<tbody>
-				<% quitem.forEach(item => { %>
-					<tr>
-						<td><%= item.input %></td>
-						<td><%= item.output %></td>
-						
-						
-					</tr>
-					<% }); %>
-
-				
-			</tbody>
-		</table>
-	</div>
 </div>
 
+<div class="row">
+	<h1>Recent Requests</h1>
 
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Your Query</th>
+				<th>GPT response</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% quitem.forEach(item => { %>
+			<tr>
+				<td><%= item.input %></td>
+				<td><%= item.output %></td>
+				<td>
+					<form
+						action="/gpt/delete"
+						method="post"
+					>
+						<input
+							type="submit"
+							value="Delete"
+						/>
+					</form>
+				</td>
+			</tr>
+			<% }); %>
+		</tbody>
+	</table>
+</div>
