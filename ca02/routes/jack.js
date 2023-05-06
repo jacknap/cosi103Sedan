@@ -1,5 +1,5 @@
 /*
-  jack.js -- Router for the Jack API
+  jack.js -- Router for jack's pages
 */
 const express = require("express");
 const router = express.Router();
@@ -28,6 +28,12 @@ router.post("/gpt/jack", async (req, res, next) => {
 	});
 	await gptQuery.save();
 	res.locals.response = await askGpt(req.body.query);
+	const newQuery = new QueryItem({
+		prompt: v,
+		response: await askGpt(v),
+		userId: req.user._id,
+	});
+	await newQuery.save();
 	res.render("jackResponse");
 });
 
