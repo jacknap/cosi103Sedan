@@ -107,25 +107,22 @@ app.get("/team", isLoggedIn, (req, res, next) => {
 	res.render("team");
 });
 
-
 app.post("/gpt", isLoggedIn, async (req, res, next) => {
-	//let qitem = await QueryItem.find({userId:req.user._id})
 	const q = new QueryItem({
 		input: res.locals.prompt,
 		output: res.locals.response,
-		userId: req.user._id
-	})
+		userId: req.user._id,
+	});
 	await q.save();
-	console.log("q is " + q)
-	res.redirect('/gpt')
-  
-  });
+	console.log("q is " + q);
+	res.redirect("/gpt");
+});
 app.get("/gpt", isLoggedIn, async (req, res, next) => {
-//let quitem2 = res.locals.query
-  let quitem = await QueryItem.find({userId:req.user._id})
-  res.locals.quitem = quitem;
+	//let quitem2 = res.locals.query
+	let quitem = await QueryItem.find({userId: req.user._id});
+	res.locals.quitem = quitem;
 
-  //res.json(quitem)
+	//res.json(quitem)
 	res.render("gpt", {quitem});
 });
 
