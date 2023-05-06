@@ -3,7 +3,7 @@ const router = express.Router();
 const GptQuery = require('../models/GptQuery')
 
 const { Configuration, OpenAIApi } = require("openai");
-const apiKey = "sk-XXXXXX" // Set your OpenAI API key here
+const apiKey = "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" // Set your OpenAI API key here
 const configuration = new Configuration({ apiKey: apiKey });
 const openai = new OpenAIApi(configuration);
 

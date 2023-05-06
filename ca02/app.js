@@ -110,8 +110,8 @@ app.get("/team", isLoggedIn, (req, res, next) => {
 app.post("/gpt", isLoggedIn, async (req, res, next) => {
 	//let qitem = await QueryItem.find({userId:req.user._id})
 	const q = new QueryItem({
-		prompt: res.locals.prompt,
-		response: res.locals.response,
+		input: res.locals.prompt,
+		output: res.locals.response,
 		userId: req.user._id
 	})
 	await q.save();
