@@ -8,9 +8,8 @@ const pw_auth_router = require("./routes/pwauth");
 const kenRouter = require("./routes/ken");
 const jackRouter = require("./routes/jack");
 const kevinRouter = require("./routes/kevin");
-
-
 const User = require("./models/User");
+// const axios = require("axios");
 
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
@@ -96,7 +95,9 @@ app.get("/", (req, res, next) => {
 	res.render("home");
 });
 
-// TODO: Add routes for about, index
+app.get("/about", (req, res, next) => {
+	res.render("about");
+});
 
 app.get("/index", isLoggedIn, (req, res, next) => {
 	res.render("index");
@@ -127,13 +128,6 @@ app.get("/gpt", isLoggedIn, async (req, res, next) => {
   //res.json(quitem)
 	res.render("gpt", {quitem});
 });
-
-app.get('/about',
-  isLoggedIn,
-  (req,res,next) => {
-    res.render('about');
-  }
-)
 
 app.use(kenRouter);
 app.use(jackRouter);
