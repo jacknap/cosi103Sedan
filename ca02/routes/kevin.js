@@ -3,7 +3,8 @@ const router = express.Router();
 const GptQuery = require('../models/GptQuery')
 
 const { Configuration, OpenAIApi } = require("openai");
-const apiKey = "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" // Set your OpenAI API key here
+const QueryItem = require('../models/QueryItem');
+const apiKey = "sk-XXXXX" // Set your OpenAI API key here
 const configuration = new Configuration({ apiKey: apiKey });
 const openai = new OpenAIApi(configuration);
 
@@ -24,7 +25,23 @@ router.post('/gpt/kevin', async (req,res,next) => {
 		userId: req.user._id
 		})
 	await gptQuery.save();
+	let v = req.body.query
     res.locals.response = await askGpt(req.body.query);
+   // console.log('res.locals.response:', res.locals.response);
+	console.log('fiwub')
+
+	const thing = new QueryItem(
+		{prompt: v,
+		response: await askGpt(v),
+		userId: req.user._id
+	  })
+	  
+	await thing.save();
+	console.log(v)
+
+	res.locals.entry = thing
+	
+	
     res.render('kevinResponse');
 });
 
@@ -37,6 +54,7 @@ const askGpt = async (query) => {
 		temperature: 0.8,
 	});
 	let response = await completion;
+    
 	return response.data.choices[0].text;
 }
 

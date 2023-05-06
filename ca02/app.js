@@ -33,6 +33,7 @@ db.once("open", function () {
 /* Enable sessions and storing session data in the database */
 /* **************************************** */
 const session = require("express-session"); // to handle sessions using cookies
+const QueryItem = require("./models/QueryItem");
 var MongoDBStore = require("connect-mongodb-session")(session);
 
 const store = new MongoDBStore({
@@ -105,8 +106,26 @@ app.get("/team", isLoggedIn, (req, res, next) => {
 	res.render("team");
 });
 
-app.get("/gpt", isLoggedIn, (req, res, next) => {
-	res.render("gpt");
+
+app.post("/gpt", isLoggedIn, async (req, res, next) => {
+	//let qitem = await QueryItem.find({userId:req.user._id})
+	const q = new QueryItem({
+		prompt: res.locals.prompt,
+		response: res.locals.response,
+		userId: req.user._id
+	})
+	await q.save();
+	console.log("q is " + q)
+	res.redirect('/gpt')
+  
+  });
+app.get("/gpt", isLoggedIn, async (req, res, next) => {
+//let quitem2 = res.locals.query
+  let quitem = await QueryItem.find({userId:req.user._id})
+  res.locals.quitem = quitem;
+
+  //res.json(quitem)
+	res.render("gpt", {quitem});
 });
 
 app.get('/about',

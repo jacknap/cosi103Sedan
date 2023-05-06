@@ -24,7 +24,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+				<% quitem.forEach(item => { %>
+					<tr>
+						<td><%= item.response %></td>
+						<td><%= item.userId %></td>
+						
+						
+					</tr>
+					<% }); %>
 
 				
 			</tbody>
