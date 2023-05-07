@@ -117,6 +117,7 @@ app.post("/gpt", isLoggedIn, async (req, res, next) => {
 
 	res.redirect("/gpt");
 });
+
 app.get("/gpt", isLoggedIn, async (req, res, next) => {
 	let quitem = await QueryItem.find({userId: req.user._id});
 	res.locals.quitem = quitem;
