@@ -14,13 +14,8 @@ const User = require("./models/User");
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
 /* **************************************** */
-const mongodb_URI =
-	"mongodb+srv://cs103aSpr23:oDyglzBvRw47EJAU@cluster0.kgugl.mongodb.net/?retryWrites=true&w=majority" ||
-	"mongodb://127.0.0.1:27017/ca02";
-console.log(
-	"MONGODB_URI=",
-	"mongodb+srv://cs103aSpr23:oDyglzBvRw47EJAU@cluster0.kgugl.mongodb.net/?retryWrites=true&w=majority"
-);
+const mongodb_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/ca02";
+console.log("MONGODB_URI=", process.env.MONGODB_URI);
 
 const mongoose = require("mongoose");
 
@@ -112,29 +107,34 @@ app.get("/team", isLoggedIn, (req, res, next) => {
 	res.render("team");
 });
 
+
 app.post("/gpt", isLoggedIn, async (req, res, next) => {
+	//let qitem = await QueryItem.find({userId:req.user._id})
 	const q = new QueryItem({
 		input: res.locals.prompt,
 		output: res.locals.response,
-		userId: req.user._id,
-	});
+		userId: req.user._id
+	})
 	await q.save();
-	console.log("q is " + q);
-	res.redirect("/gpt");
-});
-
+	
+	res.redirect('/gpt')
+  
+  });
 app.get("/gpt", isLoggedIn, async (req, res, next) => {
-	//let quitem2 = res.locals.query
-	let quitem = await QueryItem.find({userId: req.user._id});
-	res.locals.quitem = quitem;
+//let quitem2 = res.locals.query
+  let quitem = await QueryItem.find({userId:req.user._id})
+  res.locals.quitem = quitem;
 
-	//res.json(quitem)
+  //res.json(quitem)
 	res.render("gpt", {quitem});
 });
 
-app.post("/gpt/delete", isLoggedIn, async (req, res) => {
-	await QueryItem.deleteOne({input: req.body.input, userId: req.user._i});
-	res.redirect("/gpt");
+app.get('/gpt/delete/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+      //console.log("inside /todo/remove/:itemId")
+      await QueryItem.deleteOne({_id:req.params.itemId});
+      res.redirect('/gpt')
 });
 
 app.use(kenRouter);

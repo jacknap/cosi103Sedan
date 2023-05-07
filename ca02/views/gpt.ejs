@@ -1,4 +1,5 @@
 <div class="row">
+	<div class= "col"> 
 	<h1>Team Mid-Sized Sedan</h1>
 	<ul>
 		<li><a href="/gpt/kevin">Travel destinations with GPT</a></li>
@@ -7,9 +8,10 @@
 			<a href="/gpt/jack">Get the runtime of a python function with GPT</a>
 		</li>
 	</ul>
-</div>
+	</div>
 
-<div class="row">
+
+	<div class= "col">
 	<h1>Recent Requests</h1>
 
 	<table class="table table-bordered table-striped">
@@ -17,7 +19,7 @@
 			<tr>
 				<th>Your Query</th>
 				<th>GPT response</th>
-				<th></th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,18 +28,13 @@
 				<td><%= item.input %></td>
 				<td><%= item.output %></td>
 				<td>
-					<form
-						action="/gpt/delete"
-						method="post"
-					>
-						<input
-							type="submit"
-							value="Delete"
-						/>
-					</form>
+					<a href="/gpt/delete/<%=item._id%>">
+						<i class="bi bi-trash"></i>
+					</a>
 				</td>
 			</tr>
 			<% }); %>
 		</tbody>
 	</table>
+</div>
 </div>

@@ -4,7 +4,7 @@ const GptQuery = require("../models/GptQuery");
 
 const {Configuration, OpenAIApi} = require("openai");
 const QueryItem = require("../models/QueryItem");
-const apiKey = "sk-xxx"; // Set your OpenAI API key here
+const apiKey = "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"; // Set your OpenAI API key here
 const configuration = new Configuration({apiKey: apiKey});
 const openai = new OpenAIApi(configuration);
 
@@ -26,8 +26,6 @@ router.post("/gpt/kevin", async (req, res, next) => {
 	await gptQuery.save();
 	let v = req.body.query;
 	res.locals.response = await askGpt(req.body.query);
-	// console.log('res.locals.response:', res.locals.response);
-	console.log("fiwub");
 
 	const thing = new QueryItem({
 		input: res.locals.prompt,
