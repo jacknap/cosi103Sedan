@@ -4,7 +4,7 @@ const GptQuery = require("../models/GptQuery");
 
 const {Configuration, OpenAIApi} = require("openai");
 const QueryItem = require("../models/QueryItem");
-const apiKey = "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"; // Set your OpenAI API key here
+const apiKey = "sk-xxx"; // Set your OpenAI API key here
 const configuration = new Configuration({apiKey: apiKey});
 const openai = new OpenAIApi(configuration);
 

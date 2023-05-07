@@ -107,34 +107,28 @@ app.get("/team", isLoggedIn, (req, res, next) => {
 	res.render("team");
 });
 
-
 app.post("/gpt", isLoggedIn, async (req, res, next) => {
-	//let qitem = await QueryItem.find({userId:req.user._id})
 	const q = new QueryItem({
 		input: res.locals.prompt,
 		output: res.locals.response,
-		userId: req.user._id
-	})
+		userId: req.user._id,
+	});
 	await q.save();
-	
-	res.redirect('/gpt')
-  
-  });
-app.get("/gpt", isLoggedIn, async (req, res, next) => {
-//let quitem2 = res.locals.query
-  let quitem = await QueryItem.find({userId:req.user._id})
-  res.locals.quitem = quitem;
 
-  //res.json(quitem)
+	res.redirect("/gpt");
+});
+app.get("/gpt", isLoggedIn, async (req, res, next) => {
+	let quitem = await QueryItem.find({userId: req.user._id});
+	res.locals.quitem = quitem;
+
+	//res.json(quitem)
 	res.render("gpt", {quitem});
 });
 
-app.get('/gpt/delete/:itemId',
-  isLoggedIn,
-  async (req, res, next) => {
-      //console.log("inside /todo/remove/:itemId")
-      await QueryItem.deleteOne({_id:req.params.itemId});
-      res.redirect('/gpt')
+app.get("/gpt/delete/:itemId", isLoggedIn, async (req, res, next) => {
+	//console.log("inside /todo/remove/:itemId")
+	await QueryItem.deleteOne({_id: req.params.itemId});
+	res.redirect("/gpt");
 });
 
 app.use(kenRouter);
